@@ -2,8 +2,8 @@
 
 <head>
 	<meta charset="utf-8">
+	<link rel = "stylesheet" type = "text/css" href = "styles.css" />
 	<script>
-		// TODO: create a handler
 		function getSearchEngine() {
 			console.log("getSearchEngine triggered");
 			let actionURL = document.querySelector("input[name=searchEngine]:checked");
@@ -65,10 +65,10 @@
 	<form id="searchForm">
 	<!-- TODO: add form elements -->
 		<input type="text" name="q">
-		<label>Google<input type="radio" name="searchEngine" value="google"></label>
-		<label>DuckDuckGo<input type="radio" name="searchEngine" value="duckDuckGo"></label>
-		<label>Bing<input type="radio" name="searchEngine" value="bing"></label>
-		<label>Ask<input type="radio" name="searchEngine" value="ask"></label>
+		<label class="radiobutton"><input type="radio" name="searchEngine" value="google">Google</label>
+		<label class="radiobutton"><input type="radio" name="searchEngine" value="duckDuckGo">DuckDuckGo</label>
+		<label class="radiobutton"><input type="radio" name="searchEngine" value="bing">Bing</label>
+		<label class="radiobutton"><input type="radio" name="searchEngine" value="ask">Ask</label>
 		<button>Go!</button>
 	</form>
 
