@@ -4,8 +4,58 @@
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
+		function getSearchEngine() {
+			console.log("getSearchEngine triggered");
+			let actionURL = document.querySelector("input[name=searchEngine]:checked");
+			if(actionURL === null){
+				return "null";
+			} else {
+				switch (actionURL.value) {
+					case "google":
+						return "https://www.google.com/search";
+						break;
+					case "duckDuckGo":
+						return "https://duckduckgo.com/";
+						break;
+					case "bing":
+						return "https://www.bing.com/search";
+						break;
+					case "ask":
+						return "https://www.ask.com/web";
+						break;
+					default:
+						console.log("No search engine selected!");
+						return "localhost";
+				}
+			}
+		}
+
+		function getSearchText() {
+			console.log("getSearchText triggered");
+			return document.querySelector("input[name=q]").value;
+		}
+
+		function alertIfEmptySearch(event) {
+			if (getSearchText() === ""){
+				alert("Please enter search text in the provided field.");
+				event.preventDefault();
+			}
+		}
+
+		function alertIfEngineNotSelected(event) {
+			if (getSearchEngine() === "null"){
+				alert("Please select a search engine.");
+				event.preventDefault();
+			}
+		}
+
     window.addEventListener("load", function(){
-        // TODO: register the handler
+		let form = document.getElementById("searchForm");
+        form.addEventListener("submit",function(event){
+			alertIfEmptySearch(event);
+			alertIfEngineNotSelected(event);
+			form.setAttribute("action", getSearchEngine());
+		});
     });
 	</script>
 </head>
@@ -13,7 +63,13 @@
 <body>
 
 	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	<!-- TODO: add form elements -->
+		<input type="text" name="q">
+		<label>Google<input type="radio" name="searchEngine" value="google"></label>
+		<label>DuckDuckGo<input type="radio" name="searchEngine" value="duckDuckGo"></label>
+		<label>Bing<input type="radio" name="searchEngine" value="bing"></label>
+		<label>Ask<input type="radio" name="searchEngine" value="ask"></label>
+		<button>Go!</button>
 	</form>
 
 </body>
